@@ -1,0 +1,12 @@
+order_id,order_date,category,units,unit_price
+ORD001,9/1/2026,Stationery,3,2.5
+ORD002,9/2/2026,Technology,1,45
+ORD003,9/3/2026,Stationery,5,1.75
+ORD004,9/4/2026,Home,2,12
+ORD005,9/5/2026,Technology,2,39.5
+ORD006,9/6/2026,Home,1,18.25
+ORD007,9/7/2026,Stationery,4,3
+ORD008,9/8/2026,Technology,1,52
+ORD009,9/9/2026,Home,3,8.5
+ORD010,9/10/2026,Stationery,2,4.25
+TOTAL,,,24,186.75

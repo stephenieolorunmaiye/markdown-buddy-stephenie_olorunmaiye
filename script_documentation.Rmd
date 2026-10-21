@@ -1,0 +1,76 @@
+---
+title: "Documentation for the Synthetic Retail Sales Script"
+author: "BDA400 student"
+date: "21 October 2026"
+output: html_document
+---
+
+<!--
+AI Assistance Declaration: I used ChatGPT (GPT-6, accessed 21 October 2026) for documentation organization and Markdown/R Markdown formatting suggestions. Prompts are recorded in ../Appendix/AI_Prompts.md. I must knit this document and independently verify the script's outputs. I am responsible for accuracy and originality.
+-->
+
+# Purpose
+
+The script `scripts/analyse_sales.R` performs a basic descriptive analysis of a fictional retail sales dataset. It calculates revenue for each order line and produces category-level and overall summaries. The data are synthetic and do not describe actual customers or transactions.
+
+## Inputs
+
+- `data/synthetic_sales.csv`
+- Required fields: `order_id`, `order_date`, `category`, `units`, and `unit_price`
+- `units` and `unit_price` must be numeric and non-negative.
+- The script expects to be run from the repository root.
+
+## Processing steps
+
+1. Confirm that the input file exists.
+2. Check that all required columns are present and contain no missing values.
+3. Validate that units and prices are non-negative.
+4. Calculate line revenue using `units * unit_price`.
+5. Summarise order counts, units, and revenue by category.
+6. Calculate overall order-line count, unique-order count, units, and revenue.
+7. Write the summary tables to the `outputs/` folder.
+
+## Example code
+
+The script calculates revenue as follows:
+
+```{r, eval=FALSE}
+sales$revenue <- sales$units * sales$unit_price
+```
+
+It then aggregates values by category:
+
+```{r, eval=FALSE}
+category_summary <- aggregate(
+  cbind(units, revenue) ~ category,
+  data = sales,
+  FUN = sum
+)
+```
+
+These chunks are examples for documentation. The complete executable workflow is in `scripts/analyse_sales.R`.
+
+## Outputs
+
+| File | Contents |
+|---|---|
+| `outputs/category_summary.csv` | Unique order count, units sold, and revenue by category |
+| `outputs/overall_summary.csv` | Number of order lines, unique orders, total units, and total revenue |
+
+The output files are generated when the R script runs. Their numeric values should be read from the actual output and checked independently rather than copied from an unexecuted example.
+
+## Limitations
+
+This is a small teaching example, not a production reporting system. It does not handle currency conversion, returns, taxes, discounts, or advanced data-quality rules. Synthetic data are not suitable for making real commercial decisions.
+
+## How to run
+
+From the repository root in R:
+
+```{r, eval=FALSE}
+source("scripts/analyse_sales.R")
+```
+
+## Verification notes
+
+Before submission, knit or preview this R Markdown file, run the R script, compare the totals against a spreadsheet calculation, and record the results in `Verification.md`.
